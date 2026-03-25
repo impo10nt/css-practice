@@ -1,1 +1,100 @@
+@use './reset' as *;
+@use './mixin' as *;
+@use './variable' as *;
 
+.container {
+  --column: 2;
+  display: grid;
+  grid-template-columns: repeat(var(--column), 200px );
+  justify-content: center;
+  column-gap: $column-gap;
+  row-gap: $row-gap;
+  padding: 30px 35px;
+
+  @include on-s-desktop {
+    --column: 4;
+  }
+}
+
+.person {
+  width: $card-size;
+  position: relative;
+  z-index: 1;
+  background-color: transparent;
+  transition: width 1s, margin 1s, padding 1s, border-radius 1s, background-color 0s;
+
+  &:hover {
+    z-index: 100;
+    background-color: #EEEEEE;
+    border-radius: 12px;
+    width: 264px; 
+    margin-left: -32px;
+    margin-right: -32px;
+    margin-top: -20px;  
+    margin-bottom: -100px; 
+    padding: 12px; 
+    padding-bottom: 24px;
+
+    .person__image { 
+      width: 240px; 
+      height: 240px;
+      border-radius: $hover-radius; 
+    }
+
+    .person__extra-details {
+      display: block; 
+    }
+
+    .person__rank {
+      top: 100px; 
+      right: 20px;
+    }
+  }
+
+  &__photo {
+    display: flex;
+    position: relative;
+  }
+
+  &__image {
+    width: $card-size; 
+    height: $card-size;
+    border-radius: $border-radius; 
+    object-fit: cover;
+    transition: width 1s, height 1s, border-radius 1s;
+  }
+
+  &__rank {
+    display: flex;
+    font-weight: 700;
+    justify-content: center;
+    align-items: center;
+    color: #8B0000;
+    width: $rank-size;
+    height: $rank-size;
+    border-radius: 100%;
+    background-color: #fff;
+    position: absolute;
+    right: 10px;
+    top: 84px;
+    z-index: 1000;
+    transition: top 1s, right 1s; 
+  }
+  
+  &__details {
+    margin-top: 8px;
+    text-align: center;
+    font-family: Arial;
+    font-weight: 700;
+    font-size: 20px; 
+    color: $details-c;
+  }
+
+  &__extra-details {
+    display: none; 
+    margin-top: 11px;
+    font-family: Arial;
+    font-weight: 400;
+    font-size: 18px;
+  }
+}
